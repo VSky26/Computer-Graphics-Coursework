@@ -101,8 +101,6 @@ int main(void)
 
     // Load models
     Model teapot("../assets/teapot.obj");
-    Model sphere("../assets/sphere.obj");
-
 
     // Load the textures
     teapot.addTexture("../assets/blue.bmp", "diffuse");
@@ -114,6 +112,33 @@ int main(void)
     teapot.kd = 0.7f;
     teapot.ks = 1.0f;
     teapot.Ns = 20.0f;
+
+    // Teapot positions
+    glm::vec3 teapotPositions[] = {
+        glm::vec3(0.0f,  0.0f,  8.0f),
+        glm::vec3(0.0f,  0.0f,  -8.0f),
+        glm::vec3(8.0f,  0.0f,  0.0f),
+        glm::vec3(-8.0f,  0.0f,  0.0f),
+        glm::vec3(5.0f,  0.0f,  5.0f),
+        glm::vec3(-5.0f,  0.0f,  -5.0f),
+        glm::vec3(5.0f,  0.0f,  -5.0f),
+        glm::vec3(-5.0f,  0.0f,  5.0f),
+    };
+
+    // Add teapots to objects vector
+    std::vector<Object> objects;
+    Object object;
+    object.name = "teapot";
+    for (unsigned int i = 0; i < 8; i++)
+    {
+        object.position = teapotPositions[i];
+        object.rotation = glm::vec3(1.0f, 1.0f, 1.0f);
+        object.scale = glm::vec3(0.75f, 0.75f, 0.75f);
+        object.angle = Maths::radians(0.0f * i);
+        objects.push_back(object);
+    }
+
+    Model sphere("../assets/sphere.obj");
 
     // Add light sources
     Light lightSources;
@@ -157,31 +182,6 @@ int main(void)
 
     lightSources.addDirectionalLight(glm::vec3(0.0f, -1.0f, 0.0f),  // direction
         glm::vec3(0.0f, 1.0f, 0.0f));  // colour
-
-    // Teapot positions
-    glm::vec3 teapotPositions[] = {
-        glm::vec3(0.0f,  0.0f,  8.0f),
-        glm::vec3(0.0f,  0.0f,  -8.0f),
-        glm::vec3(8.0f,  0.0f,  0.0f),
-        glm::vec3(-8.0f,  0.0f,  0.0f),
-        glm::vec3(5.0f,  0.0f,  5.0f),
-        glm::vec3(-5.0f,  0.0f,  -5.0f),
-        glm::vec3(5.0f,  0.0f,  -5.0f),
-        glm::vec3(-5.0f,  0.0f,  5.0f),
-    };
-
-    // Add teapots to objects vector
-    std::vector<Object> objects;
-    Object object;
-    object.name = "teapot";
-    for (unsigned int i = 0; i < 8; i++)
-    {
-        object.position = teapotPositions[i];
-        object.rotation = glm::vec3(1.0f, 1.0f, 1.0f);
-        object.scale = glm::vec3(0.75f, 0.75f, 0.75f);
-        object.angle = Maths::radians(0.0f * i);
-        objects.push_back(object);
-    }
 
     // Load a 2D plane model for the floor and add textures
     Model floor("../assets/plane.obj");
