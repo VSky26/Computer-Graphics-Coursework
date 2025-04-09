@@ -86,6 +86,7 @@ void Model::setupBuffers()
     glEnableVertexAttribArray(2);
     glBindBuffer(GL_ARRAY_BUFFER, normalBuffer);
     glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+<<<<<<< HEAD
 
     // Create tangent buffer
     GLuint tangentBuffer;
@@ -110,6 +111,10 @@ void Model::setupBuffers()
     glVertexAttribPointer(4, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
 
     // Unbind the VAO
+=======
+    
+     // Bind the VAO
+>>>>>>> d6d57248d9271c5ec0249a062b01d4617d0e07dd
     glBindVertexArray(0);
 }
 
